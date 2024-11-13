@@ -4,27 +4,30 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>{{ config('app.name') }}</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
-                @vite(['resources/css/app.css', 'resources/js/app.js'])
+        
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="font-sans antialiased">
+    <body class="font-sans antialiased dark:bg-black dark:text-white/50 min-h-screen grid place-items-center">
         @if (Route::has('login'))
-            <nav class="-mx-3 flex flex-1 justify-end">
                 @auth
                     <a
                         href="{{ url('/dashboard') }}"
-                        class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
+                        class="text-indigo-600 hover:text-indigo-800"
                     >
                         Dashboard
                     </a>
                 @else
+                <!--so that it's positioned to the top right-->
+                <!--mr = margin-->
+                <div class="absolute top-0 right-0 p-6">
                     <a
                         href="{{ route('login') }}"
-                        class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
+                        class="text-indigo-600 hover:text-indigo-800 mr-4"
                     >
                         Log in
                     </a>
@@ -32,13 +35,16 @@
                     @if (Route::has('register'))
                         <a
                             href="{{ route('register') }}"
-                            class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
+                            class="text-indigo-600 hover:text-indigo-800"
                         >
                             Register
                         </a>
+                </div>
                     @endif
                 @endauth
-            </nav>
-        @endif              
+        @endif   
+         <div class="flex items-center justify-center min-h-screen">
+            <h1 class="text-7xl text-center">LiteNotes</h1>           
+        </div>           
     </body>
 </html>
